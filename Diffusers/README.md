@@ -34,3 +34,4 @@ On distributed setups, you can run inference across multiple GPUs with [Huggingf
 - Model sharding is a technique that distributes models across GPUs when the models don’t fit on a single GPU.
 - The `balanced` strategy evenly distributes the model on all available GPUs.
   > device_map = "balanced"
+![Screenshot 2025-06-24 173837](https://github.com/user-attachments/assets/86df8e78-0392-4a2b-96e2-ad62635ec272)
