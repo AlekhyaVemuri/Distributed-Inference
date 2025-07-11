@@ -1,10 +1,12 @@
 import torch
 from accelerate import PartialState
-from diffusers import DiffusionPipeline
+from diffusers import StableDiffusion3Pipeline
 
-pipeline = DiffusionPipeline.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, use_safetensors=True
+pipeline = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3.5-medium",
+        torch_dtype=torch.bfloat16,
+        use_safetensors=True
 )
+
 distributed_state = PartialState()
 pipeline.to(distributed_state.device)
 
