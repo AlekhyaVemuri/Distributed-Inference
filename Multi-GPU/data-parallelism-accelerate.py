@@ -9,7 +9,9 @@ pipeline = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusio
 
 distributed_state = PartialState()
 pipeline.to(distributed_state.device)
-
-with distributed_state.split_between_processes(["a dog", "a cat"]) as prompt:
-    result = pipeline(prompt).images[0]
-    result.save(f"result_{distributed_state.process_index}.png")
+try:
+    with distributed_state.split_between_processes(["a dog", "a cat"]) as prompt:
+        result = pipeline(prompt).images[0]
+        result.save(f"result_{distributed_state.process_index}.png")
+except Exception as e:
+    print("Error while generating images. Try re-configuring the Accelerate package again")
